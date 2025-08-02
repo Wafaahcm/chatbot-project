@@ -1,7 +1,8 @@
+import { useState } from "react";
 import ChatMessage from "./ChatMessage";
 
 function ChatMessages() {
-  const chatMessages = [
+  const [chatMessages, setChatMessages] = useState([
     {
       id: "id1",
       message: "hello Chatbot",
@@ -22,15 +23,17 @@ function ChatMessages() {
       message: "Today is August 01",
       sender: "robot",
     },
-  ];
+  ]);
 
   function sendMessage() {
-    chatMessages.push({
-      message: "test",
-      sender: "user",
-      id: crypto.randomUUID(),
-    });
-    console.log(chatMessages);
+    setChatMessages([
+      ...chatMessages,
+      {
+        message: "test",
+        sender: "user",
+        id: crypto.randomUUID(),
+      },
+    ]);
   }
 
   return (
